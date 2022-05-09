@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "02676263-3205-4568-80de-af78d1dcad8c",
+		"name": "superchat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "save customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"superchat@email.com\",\r\n    \"companyName\": \"superchat\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save contact",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"stephan@email.com\",\r\n    \"name\":\"stephan\",\r\n    \"phoneNumber\":\"9999999999\",\r\n    \"address\":\"Berlin, Mitte 109\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/customer/superchat/superchat@email.com/contact",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"superchat",
+						"superchat@email.com",
+						"contact"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "contacts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/superchat/superchat@email.com/contact",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"superchat",
+						"superchat@email.com",
+						"contact"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send message to customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"companyName\": \"superchat\",\r\n    \"customerEmail\" : \"superchat@email.com\",\r\n\t\"recipient\" : \"stephan@email.com\",\r\n\t\"subject\" : \"New message - Hello ${RecipientName} \", \r\n\t\"body\": \"Hello ${RecipientName}, the current Bitcoin price is $ ${BitcoinPrice}, Bitcoin changes all the time\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/customer/sendMessage",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"sendMessage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "messages history",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/superchat/superchat@email.com/messages",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"superchat",
+						"superchat@email.com",
+						"messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WebHook send message",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"companyName\" : \"superchat\",\r\n    \"customerEmail\":\"superchat@email.com\",\r\n\t\"recipient\" : \"stephan@email.com\",\r\n\t\"subject\" : \"System Notification - Hello ${RecipientName} \", \r\n\t\"message\": \"Hello ${RecipientName}, the current Bitcoin price is $ ${BitcoinPrice}, Bitcoin changes all the time\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/sendMessage",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sendMessage"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

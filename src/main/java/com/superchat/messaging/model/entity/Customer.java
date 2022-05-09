@@ -1,5 +1,6 @@
 package com.superchat.messaging.model.entity;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,14 +14,16 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Getter
+@Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "customer", uniqueConstraints={@UniqueConstraint(columnNames={"email"})})
+@Getter
+@Table(name = "customer", uniqueConstraints={@UniqueConstraint(columnNames={"email", "companyName"})})
 public class Customer {
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -30,5 +33,7 @@ public class Customer {
 	private String companyName;
 	
 	@OneToMany(mappedBy = "customer", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Contact> contacts;	
+	private List<Contact> contacts;
+	
+	private OffsetDateTime creationAt;
 }
